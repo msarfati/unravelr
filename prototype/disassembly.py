@@ -5,7 +5,8 @@ import dis
 
 
 def my_func():
-    return 1
+    x = 33
+    return 1 * 4 * x
 
 dis.dis(my_func)
 
@@ -18,10 +19,31 @@ from io import StringIO
 
 user_input = \
 """\
-def my_func2():
-    return 1 \
+x = 4
+abs(-45353) * 3.14
+1 + 3 * 4
+"""
+
+cio = StringIO(user_input)
+# print(type(cio.getvalue()))
+Binary = compile(cio.getvalue(), "<string>", "exec")
+dis.dis(Binary)
+
+# Future plans: support disassembling classes, modules and functions
+
+user_input = \
+"""
+def myfunc2():
+    x = 4 * 4
+    return x / 2
+
+def myfunc3():
+    [i**2 for i in range(5)]
 """
 
 cio = StringIO(user_input)
 Binary = compile(cio.getvalue(), "<string>", "exec")
-dis.dis(Binary)
+
+for i in range(len(Binary.co_names)):
+    Binary_nest = compile(Binary.co_names[i], "<string>", "exec")
+    dis.dis(Binary_nest)
