@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_body %}
+    {{ super() }}
+
+    <div class="hero-unit about-unit">
+      <h1>Welcome to the Cypher Cossack!</h1>
+      <p>Custom-implemented ciphers and web frontend.</p>
+      <p>INSTRUCTIONS:<br/>Type your message in "MSG.IN", set the <b>mode</b> and the <b>cipher</b> at menu bar. You may also customize your key in "KEY.IN".</p>
+      <p>DISCLAIMER:<br/>This is only a toy. Do not use Cipher Cossack for sensitive or confidential communications.</p>
+      <p>Written by <a href="https://github.com/msarfati/cypher-cossack">Michael Sarfati</a>.</p>
+      <p><a class="btn btn-primary btn-large">OK</a></p>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript">
+    // $('a[href="#about"]').on('click', function(event) {
+    //     $('.about-unit').dialog();
+    // });
+    </script>
+{% endblock %}
