@@ -1,41 +1,41 @@
 SHELL=/bin/bash
-PROJECT_NAME=InstaCommander
-MOD_NAME=instacommander
-APP_ENTRY=bin/instacommander.py
-TEST_CMD=SETTINGS=$$PWD/etc/testing.conf nosetests -w $(MOD_NAME)
-TEST_DUMP="./maketests.log"
+PROJECT_NAME=CypherCossack
+DEV_CONFIG=$$PWD/etc/dev.conf
+PRODUCTION_CONFIG=/etc/cypher_cossack.conf
+CURRENT_CONFIG=$(DEV_CONFIG)
+TEST_DUMP=./maketests.log
+TESTING_CONFIG=$$PWD/etc/testing.conf
+TEST_CMD=SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=2 --where=./cypher_cossack/tests
 
 install:
 	python setup.py install
-	pip install ./wheelhouse/*
 
 prototype:
-	# ipython -i $(APP_ENTRY)
-	python $(APP_ENTRY) $(username)
+	ipython -i bin/prototype.py
 
 clean:
 	rm -rf build dist *.egg-info
 	-rm `find . -name "*.pyc"`
 	find . -name "__pycache__" -delete
 
-wheelhouse:
-	python setup.py bdist_wheel
-
-run:
-	python $(APP_ENTRY)
+server:
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py runserver
 
 shell:
-	SETTINGS=$$PWD/etc/dev.conf bin/manage.py shell
-
-watch:
-	watchmedo shell-command -R -p "*.py" -c 'echo \\n\\n\\n\\nSTART; date; $(TEST_CMD) -c etc/nose/test-single.cfg; date' .
+	SETTINGS=$(CURRENT_CONFIG) bin/manage.py shell
 
 test:
 	rm -f $(TEST_DUMP)
-	$(TEST_CMD) -c etc/nose/test.cfg
+	$(TEST_CMD) 2>&1 | tee -a $(TEST_DUMP)
 
 single:
-	$(TEST_CMD) -c etc/nose/test-single.cfg
+	$(TEST_CMD) --attr=single
+
+watch:
+	watchmedo shell-command -R -p "*.py" -c 'echo \\n\\n\\n\\nSTART; date; $(TEST_CMD); date' .
+
+wheelhouse:
+	python setup.py bdist_wheel
 
 build-wheels:
 	pip wheel .
@@ -44,7 +44,4 @@ build-wheels:
 install-wheels:
 	pip install --use-wheel --find-links=wheelhouse --no-index -r dependencies.txt
 
-dependencies:
-	pip freeze | sed '/$(PROJECT_NAME)/ d' > dependencies.txt
-
-.PHONY: clean install test server watch db single docs shell dbshell wheelhouse prototype build-wheels install-wheels dependencies
+.PHONY: clean install test server watch single docs shell wheelhouse prototype build-wheels install-wheels
