@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import dis
-from io import StringIO
 
 # Disassemble an ordinary function called inside the code
 
@@ -14,6 +13,9 @@ print("-" * 15)
 print("-" * 15)
 
 # Disassemble a function imported from elsewhere (say, user input field) and compiled
+# https://stackoverflow.com/questions/15432499/python-how-to-get-the-source-from-a-code-object
+from io import StringIO
+
 user_input = \
 """\
 def my_func2():
