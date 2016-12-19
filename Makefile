@@ -1,11 +1,11 @@
 SHELL=/bin/bash
 PROJECT_NAME=Unravelr
 DEV_CONFIG=$$PWD/etc/dev.conf
-PRODUCTION_CONFIG=/etc/cypher_cossack.conf
+PRODUCTION_CONFIG=/etc/unravelr.conf
 CURRENT_CONFIG=$(DEV_CONFIG)
 TEST_DUMP=./maketests.log
 TESTING_CONFIG=$$PWD/etc/testing.conf
-TEST_CMD=SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=2 --where=./cypher_cossack/tests
+TEST_CMD=SETTINGS=$(TESTING_CONFIG) nosetests --verbosity=2 --where=./unravelr/tests
 
 install:
 	python setup.py install
