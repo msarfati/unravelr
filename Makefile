@@ -1,5 +1,5 @@
 SHELL=/bin/bash
-PROJECT_NAME=CypherCossack
+PROJECT_NAME=Unravelr
 DEV_CONFIG=$$PWD/etc/dev.conf
 PRODUCTION_CONFIG=/etc/cypher_cossack.conf
 CURRENT_CONFIG=$(DEV_CONFIG)

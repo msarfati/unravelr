@@ -1,6 +1,5 @@
-from .. import cipher as cipher_alg
 from flask import jsonify, request, url_for
-from flask.ext.restful import abort, Api, Resource, reqparse, fields, marshal
+from flask_restful import abort, Api, Resource, reqparse, fields, marshal
 
 cipher_alg_lookup = {
     "rc4": {
@@ -44,7 +43,7 @@ class Ciphers(Resource):
         pass
 
 
-class Cipher(Resource):
+class Disassembler(Resource):
     """
     Operations dealing with individual ciphers
     """
@@ -60,11 +59,6 @@ class Cipher(Resource):
         except:
             abort(404)
 
-
-class CipherEncrypt(Resource):
-    """
-    Handles looking up the cipher, and encrypting the plaintext.
-    """
     def post(self, cipher):
         cipher = cipher_alg_lookup_validator(cipher)
 
