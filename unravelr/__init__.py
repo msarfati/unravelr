@@ -8,7 +8,7 @@ app_instance = None
 from flask_marshmallow import Marshmallow
 ma = Marshmallow()
 
-from flask.ext.restful import Api
+from flask_restful import Api
 rest_api = Api()
 
 
