@@ -13,53 +13,22 @@ class Disassembler(Resource):
 
         try:
             # import ipdb; ipdb.set_trace()
-            return jsonify(message="Simply POST your payload to be analyzed by Unravelr.")
+            return jsonify(message="POST your code into the 'payload' field to be analyzed by Unravelr.")
         except:
             abort(404)
 
-    def post(self, cipher):
-        cipher = cipher_alg_lookup_validator(cipher)
+    def post(self):
 
         # import ipdb; ipdb.set_trace()
         parser = reqparse.RequestParser()
-        parser.add_argument('key', type=str, help='Secret key, used to encrypt your message.')
-        parser.add_argument('message', type=str, help='The plaintext that will be encrypted')
+        parser.add_argument('payload', type=str, help='Payload as code, to be analyzed by Unravelr.')
         args = parser.parse_args()
 
-        cipher_alg = cipher['_algorithm']
-        cipher_alg = cipher_alg(key=args['key'])
         try:
+            import dis
+            Binary = compile(args['payload'], "<string>", "exec")
+            result = dis.dis(Binary)
             # import ipdb; ipdb.set_trace()
-            return jsonify(dict(
-                ciphertext=cipher_alg.encrypt(plaintext=args['message']),
-                key=args['key'],
-                plaintext=args['message'],
-                cipher=cipher['name']))
-        except:
-            abort(404)
-
-
-class CipherDecrypt(Resource):
-    """
-    Handles looking up the cipher, and decryptnig the ciphertext.
-    """
-    def post(self, cipher):
-        cipher = cipher_alg_lookup_validator(cipher)
-
-        # import ipdb; ipdb.set_trace()
-        parser = reqparse.RequestParser()
-        parser.add_argument('key', type=str, help='Secret key, used to encrypt your message.')
-        parser.add_argument('message', type=str, help='The ciphertext that will be decrypted')
-        args = parser.parse_args()
-
-        cipher_alg = cipher['_algorithm']
-        cipher_alg = cipher_alg(key=args['key'])
-        try:
-            # import ipdb; ipdb.set_trace()
-            return jsonify(dict(
-                ciphertext=args['message'],
-                key=args['key'],
-                plaintext=cipher_alg.decrypt(ciphertext=args['message']),
-                cipher=cipher['name']))
+            return jsonify(dict(result=result))
         except:
             abort(404)
