@@ -15,14 +15,15 @@ def read(fname):
 
 
 setup(version=version,
-    name='InstaCommander',
-    description="Prototype Terminal client for Instagram.",
+    name='Unravelr',
+    description="RESTful enabled Disassembler in web client.",
     author='Michael Sarfati',
     author_email="michael.sarfati@utoronto.ca",
     packages=[
-        "instacommander",
-        "instacommander.tests",
-        "instacommander.utils",
+        "unravelr",
+        "unravelr.api",
+        "unravelr.tests",
+        "unravelr.views",
     ],
     scripts=[
     ],
