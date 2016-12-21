@@ -26,6 +26,7 @@ setup(version=version,
         "unravelr.views",
     ],
     scripts=[
+        "bin/manage.py"
     ],
     long_description="""""",
     classifiers=[],  # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers

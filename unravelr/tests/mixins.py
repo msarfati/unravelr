@@ -1,6 +1,6 @@
 from .. import create_app
 from flask import current_app
-from flask.ext.testing import TestCase
+from flask_testing import TestCase
 
 
 class TestCaseMixin(TestCase):
