@@ -20,5 +20,7 @@ class DisassemblerTestCase(TestCaseMixin):
             data=json.dumps({"payload": """x=abs(-9)"""}),
             content_type='application/json',)
         self.assertEquals(r.status_code, 200)
-        print(r.json); assert False;
+        # import ipdb; ipdb.set_trace()
+        # print(r.json); assert False;
+        # assert False
         self.assertGreaterEqual(len(r.json), 1, "Payload serializable.")

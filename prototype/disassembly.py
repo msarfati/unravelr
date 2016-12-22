@@ -29,6 +29,9 @@ cio = StringIO(user_input)
 Binary = compile(cio.getvalue(), "<string>", "exec")
 dis.dis(Binary)
 
+result = dis.dis(Binary)
+import ipdb; ipdb.set_trace()
+
 # Future plans: support disassembling classes, modules and functions
 
 user_input = \
