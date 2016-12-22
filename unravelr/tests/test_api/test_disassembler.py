@@ -15,6 +15,7 @@ class DisassemblerTestCase(TestCaseMixin):
     # @attr('single')
     def test_post(self):
         "Testing api.Disassembler.post on valid input"
+        # curl -H "Content-Type:application/json" -X POST -d '{"payload": "x=abs(-3)*9"}' http://127.0.0.1:55555/api/disassembler
         r = self.client.post(
             "/api/disassembler",
             data=json.dumps({"payload": """x=abs(-9)"""}),
