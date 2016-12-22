@@ -1,5 +1,6 @@
 # :snake: Unravelr :snake:
-A python web-based disassembler
+A web-based disassembler for Python code, featuring a RESTful API.
+
 By Michael Sarfati (michael.sarfati@utoronto.ca)
 
 Sun Dec 18 09:37:18 EST 2016
