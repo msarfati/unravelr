@@ -10,6 +10,8 @@ Sun Dec 18 09:37:18 EST 2016
 ```bash
 mkvirtualenv -p `which python3` -a . unravelr
 ```
+
+### Installation and testing
 ```bash
 make install
 make test
