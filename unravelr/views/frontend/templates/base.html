@@ -1,50 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Unravelr{% block title %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{ url_for('frontend.static', filename='css/bootstrap.min.css') }}" rel="stylesheet" media="screen">
-    <link href="{{ url_for('frontend.static', filename='css/bootstrap-theme.min.css') }}" rel="stylesheet" media="screen">
-  </head>
-  <body>
-    <ul class="nav nav-tabs">
-      <li class="dropdown">
-        <a class="dropdown-toggle"
-           data-toggle="dropdown"
-           href="#">
-            File
-            <b class="caret"></b>
-          </a>
-        <ul class="dropdown-menu">
-          <!-- links -->
-          <!-- <li><a href="#open">Open</a></li> -->
-          <li><a href="#save-to-file">Save to file</a></li>
-          <!-- iFrame goes here -->
-        </ul>
-      <li class="dropdown">
-        <a class="dropdown-toggle"
-           data-toggle="dropdown"
-           href="#">
-            Cipher: <div class="current-cipher" style="display: inline">RC4</div>
-            <b class="caret"></b>
-          </a>
-        <ul class="dropdown-menu">
-          <!-- links -->
-          <li class="active"><a href="#rc4">RC4</a></li>
-          <li><a href="#tea">TEA (Coming soon)</a></li>
-        </ul>
-      </li>
-      <li class="dropdown">
-        <a href="#mode">Mode: Plaintext-to-Ciphertext</a>
-      </li>
-      <li class="dropdown">
-        <a href="#">API</a>
-      </li>
-      <li class="dropdown">
-        <a href="#about">About</a>
-      </li>
-    </ul>
+{% extends "bootstrap/base.html" %}
 
+{% block title %} Unravelr {% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+{% block content %}
     <div class="container">
     {% block page_body %}
     <div class="io-panes">
@@ -58,7 +22,8 @@
 
     <script src="http://code.jquery.com/jquery.js"></script>
     <script src="{{ url_for('frontend.static', filename='js/bootstrap.min.js') }}"></script>
-  </body>
+{% endblock %}
+
 {% block scripts %}
     <script type="text/javascript">
     // Handles the cipher type

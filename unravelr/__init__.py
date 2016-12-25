@@ -11,6 +11,9 @@ ma = Marshmallow()
 from flask_restful import Api
 rest_api = Api()
 
+from flask_bootstrap import Bootstrap
+bootstrap = Bootstrap()
+
 
 class Unravelr:
 
@@ -35,6 +38,8 @@ class Unravelr:
         self.init_api(init_api)
 
         self.init_schemas()
+
+        self.init_bootstrap()
 
     def init_blueprints(self):
         from .views.frontend import frontend
@@ -62,6 +67,9 @@ class Unravelr:
 
     def init_schemas(self):
         ma.init_app(self.app)
+
+    def init_bootstrap(self):
+        bootstrap.init_app(self.app)
 
 
 def create_app():
